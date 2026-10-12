@@ -1,4 +1,12 @@
 
+// Token de Asana: NO hardcodear acá.
+// Se lee de las propiedades del script:
+//   Archivo > Configuración del proyecto > Propiedades de la secuencia de comandos
+//   -> nueva propiedad ASANA_TOKEN
+// `var` en el nivel superior es global para todo el proyecto de Apps Script,
+// por eso se declara una sola vez acá y lo usan los demás archivos.
+var ASANA_TOKEN = PropertiesService.getScriptProperties().getProperty('ASANA_TOKEN');
+
 function getAsanaDueOnandNotes_fromTask() {
 
   // logeo en Asana con TOKEN
@@ -6,7 +14,7 @@ function getAsanaDueOnandNotes_fromTask() {
 var options = {
   'method': 'GET',
    "headers" : {
-     "Authorization": "Bearer REVOKED_ASANA_TOKEN"
+     "Authorization": "Bearer " + ASANA_TOKEN
    }
   };
 
@@ -130,7 +138,7 @@ function getCustomerTalkDueDate(member_projectgid) {
   var CToptions = {
   "method": 'GET',
    "headers" : {
-     "Authorization": "Bearer REVOKED_ASANA_TOKEN"
+     "Authorization": "Bearer " + ASANA_TOKEN
    }
   };
 
